@@ -25,7 +25,7 @@ pipeline {
                 //Cogemos la base de la URL con un script:
                 script {
                     def BASE_URL = sh( script: "aws cloudformation describe-stacks --stack-name todo-list-aws-staging --query 'Stacks[0].Outputs[?OutputKey==`BaseUrlApi`].OutputValue' --region us-east-1 --output text",
-                        returnStdout: true)
+                        returnStdout: true).trim()
                     echo "$BASE_URL"
                     
                      // Asignar BASE_URL como variable global para el pipeline
